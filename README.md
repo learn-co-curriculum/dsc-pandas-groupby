@@ -1,16 +1,18 @@
 
-# Splitting, Applying, and Combining with `.groupby()` in Pandas
+# Split, Apply and Combine in Pandas
+
 
 ## Introduction
 
-In this lab, we're going to learn about how to use `.groupby()` statements in pandas, to group 
+In this lab, we're going to learn how to use `.groupby()` statements in Pandas to split, apply and group data sets.
 
 ## Objectives
+You will be able to:
+* Understand why split, apply and combines are useful for DataFrames
+* Understand what a groupby object is and split a DataFrame using a groupby
+* Use an `apply` on a DataFrame using a named function or a lambda function
 
-* Use `.groupby()` functions to **_split_** our data into different groups
-* **_Apply_** aggregation functions to each group independently and **_combine_** the results to quickly get information about our dataset
-
-### Using `.groupby()` statements
+## Using `.groupby()` statements
 
 Consider an example of the titanic dataframe:
 
@@ -42,7 +44,7 @@ The code above returns displays the following DataFrame:
 
 We can use aggregation functions to quickly help us compare subsets of our data.  For example, the aggregate statistics displayed above allow us to quickly notice that there were more female survivors overall than male survivors (although it is important to note that this does not tell us how many male or female passengers exist overall).
 
-### Aggregation Functions
+## Aggregation Functions
 
 
 The following list contains aggregation functions that are built-in to pandas for use with `.groupby()` statements:
@@ -72,7 +74,7 @@ gb.apply      gb.cummax     gb.cumsum     gb.fillna     gb.gender     gb.head   
 
 This is a comprehensive list of all built-in functions available to grouped objects.  Note thaat some are aggregation functions, while others, such as `gb.fillna()` allows us fill the null values to individual groups independently.  
 
-### Grouping With Multiple Groups
+## Grouping With Multiple Groups
 
 We can also split our data into multiple different levels of groups by passing in an array containing the name of every column we would like to group by--for instance, by every combination of both `Sex` and `Pclass`.    
 
@@ -84,7 +86,7 @@ The code above would return the following DataFrame:
 
 <img src="titanic_3.png">
 
-### Selecting Information From Grouped Objects
+## Selecting Information From Grouped Objects
 
 Since the resulting object returned is a DataFrame, we can also slice a selection of columns we're interested in from the DataFrame returned. 
 
@@ -118,7 +120,7 @@ print(grouped['female'][1])
 
 Note that when we provide only the value `female` as the index, we get all groups where the passenger is female, regardless of the `Pclass` value. In the second example, we specify that we want the results for female passengers with a 1st-class ticket. 
 
-# Conclusion
+## Conclusion
 
 In this lab, we learned about how to:
 
