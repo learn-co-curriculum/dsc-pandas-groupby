@@ -16,7 +16,7 @@ You will be able to:
 
 Consider an example of the titanic dataframe:
 
-<img src='titanic_1.png'>
+<img src='images/titanic_1.png'>
 
 During the Exploratory Data Analysis phase, one of the most common tasks we'll want to do is split our dataset into subgroups and compare them to see if we can notice any trends.  For instance, we may want to group the passengers together by gender or age. We can do this by using the `.groupby()` function built-in to pandas DataFrames. 
 
@@ -40,7 +40,7 @@ df.groupby('Sex').sum()
 
 The code above returns displays the following DataFrame:
 
-<img src='titanic_2.png'>
+<img src='images/titanic_2.png'>
 
 We can use aggregation functions to quickly help us compare subsets of our data.  For example, the aggregate statistics displayed above allow us to quickly notice that there were more female survivors overall than male survivors (although it is important to note that this does not tell us how many male or female passengers exist overall).
 
@@ -84,7 +84,7 @@ df.groupby(['Sex', 'Pclass']).mean()
 
 The code above would return the following DataFrame:
 
-<img src="titanic_3.png">
+<img src="images/titanic_3.png">
 
 ## Selecting Information From Grouped Objects
 
@@ -98,7 +98,7 @@ df.groupby(['Sex', 'Pclass'])['Survived'].mean()
 
 The code above returns the following DataFrame:
 
-<img src='titanic_4.png'>
+<img src='images/titanic_4.png'>
 
 The above example slices by column, but we can also slice by index, by providing the combination of indices we want in order to slice by group--note that we can provide one or more levels of index values.  See the example below:
 
@@ -120,7 +120,7 @@ print(grouped['female'][1])
 
 Note that when we provide only the value `female` as the index, we get all groups where the passenger is female, regardless of the `Pclass` value. In the second example, we specify that we want the results for female passengers with a 1st-class ticket. 
 
-## Conclusion
+## Summary
 
 In this lab, we learned about how to:
 
