@@ -29,7 +29,7 @@ df.groupby('Sex')
 df.groupby(df['Sex'])
 ```
 
-Note that this alone will not display a result--although we have split the dataset into groups, we do not have a meaningful way to display information until we chain it with an **_Aggregation Function_**.  This allows us the DataFrame to compute summary statistics, which we can them combine together and display. 
+Note that this alone will not display a result--although we have split the dataset into groups, we do not have a meaningful way to display information until we chain it with an **_Aggregation Function_**.  This allows us the DataFrame to compute summary statistics, which we can then combine together and display. 
 
 We can quickly use an aggregation function by chaining the call to the end of our groupby method.
 
@@ -72,7 +72,7 @@ gb.aggregate  gb.count      gb.cumprod    gb.dtype      gb.first      gb.groups 
 gb.apply      gb.cummax     gb.cumsum     gb.fillna     gb.gender     gb.head       gb.indices    gb.mean       gb.name       gb.ohlc       gb.quantile   gb.size       gb.tail       gb.weight
 ```
 
-This is a comprehensive list of all built-in functions available to grouped objects.  Note thaat some are aggregation functions, while others, such as `gb.fillna()` allows us fill the null values to individual groups independently.  
+This is a comprehensive list of all built-in functions available to grouped objects.  Note that some are aggregation functions, while others, such as `gb.fillna()` allows us to fill the null values to individual groups independently.  
 
 ## Grouping With Multiple Groups
 
