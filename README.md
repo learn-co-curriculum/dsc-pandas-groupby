@@ -1,26 +1,25 @@
 
-# Split, Apply and Combine in Pandas
+# Pandas Groupby
 
 
 ## Introduction
 
-In this lab, we're going to learn how to use `.groupby()` statements in Pandas to split, apply and group data sets.
+In this lab, you'll learn how to use `.groupby()` statements in Pandas to summarize datasets.
 
 ## Objectives
 You will be able to:
-* Understand why split, apply and combines are useful for DataFrames
 * Understand what a groupby object is and split a DataFrame using a groupby
-* Use an `apply` on a DataFrame using a named function or a lambda function
+* Create aggregate data view using the groupby method on a pandas DataFrame
 
 ## Using `.groupby()` statements
 
-Consider an example of the titanic dataframe:
+Consider an example of the titanic DataFrame:
 
 <img src='images/titanic_1.png'>
 
-During the Exploratory Data Analysis phase, one of the most common tasks we'll want to do is split our dataset into subgroups and compare them to see if we can notice any trends.  For instance, we may want to group the passengers together by gender or age. We can do this by using the `.groupby()` function built-in to pandas DataFrames. 
+During the Exploratory Data Analysis phase, one of the most common tasks you'll want to do is split our dataset into subgroups and compare them to see if you can notice any trends.  For instance, you may want to group the passengers together by gender or age. You can do this by using the `.groupby()` function built-in to pandas DataFrames. 
 
-To group passengers by gender, we would type:
+To group passengers by gender, you would type:
 
 ```python
 df.groupby('Sex')
@@ -29,9 +28,9 @@ df.groupby('Sex')
 df.groupby(df['Sex'])
 ```
 
-Note that this alone will not display a result--although we have split the dataset into groups, we do not have a meaningful way to display information until we chain it with an **_Aggregation Function_**.  This allows us the DataFrame to compute summary statistics, which we can then combine together and display. 
+Note that this alone will not display a result--although you have split the dataset into groups, you don't have a meaningful way to display information until you chain an **_Aggregation Function_** onto the groupby.  This allows you to compute summary statistics!
 
-We can quickly use an aggregation function by chaining the call to the end of our groupby method.
+You can quickly use an aggregation function by chaining the call to the end of the groupby method.
 
 ```python
 df.groupby('Sex').sum()
@@ -42,12 +41,12 @@ The code above returns displays the following DataFrame:
 
 <img src='images/titanic_2.png'>
 
-We can use aggregation functions to quickly help us compare subsets of our data.  For example, the aggregate statistics displayed above allow us to quickly notice that there were more female survivors overall than male survivors (although it is important to note that this does not tell us how many male or female passengers exist overall).
+You can use aggregation functions to quickly help us compare subsets of our data.  For example, the aggregate statistics displayed above allow you to quickly notice that there were more female survivors overall than male survivors.
 
 ## Aggregation Functions
 
 
-The following list contains aggregation functions that are built-in to pandas for use with `.groupby()` statements:
+There are many built in aggregate functions provided for you in the pandas package, and you can even write and apply your own. Some of the most common aggregate functions you may want to use are:
 
 * `.min()` -- returns the minimum value for each column by group
 * `.max()` -- returns the maximum value for each column by group
@@ -56,7 +55,7 @@ The following list contains aggregation functions that are built-in to pandas fo
 * `.count()` -- returns the count of each column by group
 
 
-We can see a list of all available aggregation functions by creating a grouped object and then using tab to inspect the available methods we can call:
+You can also see a list of all of the built in aggregation methods by creating a grouped object and then using tab completion to inspect the available methods:
 
 ```python
 grouped_df = df.groupby('Sex')
@@ -76,7 +75,7 @@ This is a comprehensive list of all built-in functions available to grouped obje
 
 ## Grouping With Multiple Groups
 
-We can also split our data into multiple different levels of groups by passing in an array containing the name of every column we would like to group by--for instance, by every combination of both `Sex` and `Pclass`.    
+You can also split data into multiple different levels of groups by passing in an array containing the name of every column you want to group by--for instance, by every combination of both `Sex` and `Pclass`.    
 
 ```python
 df.groupby(['Sex', 'Pclass']).mean()
@@ -88,7 +87,7 @@ The code above would return the following DataFrame:
 
 ## Selecting Information From Grouped Objects
 
-Since the resulting object returned is a DataFrame, we can also slice a selection of columns we're interested in from the DataFrame returned. 
+Since the resulting object returned is a DataFrame, you can also slice a selection of columns you're interested in from the DataFrame returned. 
 
 The example below demonstrates the syntax for returning the mean of the `Survived` class for every combination of `Sex` and `Pclass`:
 
@@ -100,8 +99,7 @@ The code above returns the following DataFrame:
 
 <img src='images/titanic_4.png'>
 
-The above example slices by column, but we can also slice by index, by providing the combination of indices we want in order to slice by group--note that we can provide one or more levels of index values.  See the example below:
-
+The above example slices by column, but you can also slice by index. Take a look:
 ```python
 grouped = df.groupby(['Sex', 'Pclass'])['Survived'].mean()
 print(grouped['female'])
@@ -118,13 +116,8 @@ print(grouped['female'][1])
 # 0.968085
 ```
 
-Note that when we provide only the value `female` as the index, we get all groups where the passenger is female, regardless of the `Pclass` value. In the second example, we specify that we want the results for female passengers with a 1st-class ticket. 
+Note that you only need to provide only the value `female` as the index, and are returned all the groups where the passenger is female, regardless of the `Pclass` value. The second example shows the results for female passengers with a 1st-class ticket. 
 
 ## Summary
 
-In this lab, we learned about how to:
-
-* **_Split_** our DataFrameinto different subgroups with the `.groupby()` method
-* **_Apply_** aggregation functions to our subgroups independently
-* **_Combine_** the results into a new DataFrame that we can visualize and access using basic pandas slicing syntax
-
+In this lab, you learned about how to split a DataFrame into subgroups using the `.groupby()` method. You also learned you to generate aggregate views of these groups by applying built in methods to a groupby object.
