@@ -46,7 +46,7 @@ You can use aggregation functions to quickly help us compare subsets of our data
 ## Aggregation Functions
 
 
-There are many built in aggregate functions provided for you in the pandas package, and you can even write and apply your own. Some of the most common aggregate functions you may want to use are:
+There are many built-in aggregate functions provided for you in the pandas package, and you can even write and apply your own. Some of the most common aggregate functions you may want to use are:
 
 * `.min()` -- returns the minimum value for each column by group
 * `.max()` -- returns the maximum value for each column by group
@@ -55,7 +55,7 @@ There are many built in aggregate functions provided for you in the pandas packa
 * `.count()` -- returns the count of each column by group
 
 
-You can also see a list of all of the built in aggregation methods by creating a grouped object and then using tab completion to inspect the available methods:
+You can also see a list of all of the built-in aggregation methods by creating a grouped object and then using tab completion to inspect the available methods:
 
 ```python
 grouped_df = df.groupby('Sex')
@@ -71,7 +71,7 @@ gb.aggregate  gb.count      gb.cumprod    gb.dtype      gb.first      gb.groups 
 gb.apply      gb.cummax     gb.cumsum     gb.fillna     gb.gender     gb.head       gb.indices    gb.mean       gb.name       gb.ohlc       gb.quantile   gb.size       gb.tail       gb.weight
 ```
 
-This is a comprehensive list of all built-in functions available to grouped objects.  Note that some are aggregation functions, while others, such as `gb.fillna()` allows us to fill the null values to individual groups independently.  
+This is a comprehensive list of all built-in functions available to grouped objects.  Note that some are aggregation functions, while others, such as `gb.fillna()`, allow us to fill the null values to individual groups independently.  
 
 ## Grouping With Multiple Groups
 
@@ -120,4 +120,4 @@ Note that you only need to provide only the value `female` as the index, and are
 
 ## Summary
 
-In this lab, you learned about how to split a DataFrame into subgroups using the `.groupby()` method. You also learned you to generate aggregate views of these groups by applying built in methods to a groupby object.
+In this lab, you learned about how to split a DataFrame into subgroups using the `.groupby()` method. You also learned you to generate aggregate views of these groups by applying built-in methods to a groupby object.
