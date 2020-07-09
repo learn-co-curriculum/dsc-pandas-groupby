@@ -8,6 +8,7 @@ In this lab, you'll learn how to use the `.groupby()` method in Pandas to summar
 
 ## Objectives
 You will be able to: 
+
 - Use groupby methods to aggregate different groups in a dataframe
 
 ## Using `.groupby()` 
@@ -99,6 +100,7 @@ The code above returns the following DataFrame:
 <img src='images/titanic_4.png'>
 
 The above example slices by column, but you can also slice by index. Take a look:
+
 ```python
 grouped = df.groupby(['Sex', 'Pclass'])['Survived'].mean()
 print(grouped['female'])
