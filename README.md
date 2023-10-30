@@ -147,7 +147,7 @@ df.groupby(df['Sex'])
 
 
 
-Note that this alone will not display a result -- although you have split the dataset into groups, you don't have a meaningful way to display information until you chain an **_Aggregation Function_** onto the groupby.  This allows you to compute summary statistics!
+Note that this alone will not display a result -- although you have split the dataset into groups, you don't have a meaningful way to display information until you chain an **_Aggregation Function_** onto the groupby.  This allows you to compute summary statistics.
 
 You can quickly use an aggregation function by chaining the call to the end of the `.groupby()` method.
 
