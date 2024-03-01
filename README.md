@@ -130,7 +130,7 @@ df.groupby('Sex')
 
 
 
-    <pandas.core.groupby.generic.DataFrameGroupBy object at 0x107e984c0>
+    <pandas.core.groupby.generic.DataFrameGroupBy object at 0x7fbea9576100>
 
 
 
@@ -143,7 +143,7 @@ df.groupby(df['Sex'])
 
 
 
-    <pandas.core.groupby.generic.DataFrameGroupBy object at 0x122608160>
+    <pandas.core.groupby.generic.DataFrameGroupBy object at 0x7fbea95525e0>
 
 
 
@@ -179,7 +179,6 @@ df.groupby('Sex').sum()
       <th></th>
       <th>PassengerId</th>
       <th>Survived</th>
-      <th>Pclass</th>
       <th>Age</th>
       <th>SibSp</th>
       <th>Parch</th>
@@ -193,7 +192,6 @@ df.groupby('Sex').sum()
       <th></th>
       <th></th>
       <th></th>
-      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -201,7 +199,6 @@ df.groupby('Sex').sum()
       <th>female</th>
       <td>267590.0</td>
       <td>284.0</td>
-      <td>131323132333?33322331222?2333231233333?2321333...</td>
       <td>12812.85</td>
       <td>838.0</td>
       <td>765.0</td>
@@ -211,7 +208,6 @@ df.groupby('Sex').sum()
       <th>male</th>
       <td>384203.0</td>
       <td>191.0</td>
-      <td>331333322111211?3313331333223332?3133331331121...</td>
       <td>23133.01</td>
       <td>997.0</td>
       <td>775.0</td>
@@ -242,19 +238,79 @@ You can also see a list of all of the built-in aggregation methods by creating a
 
 ```python
 grouped_df = df.groupby('Sex')
+```
+
+
+```python
 # For the following line of code, remove the `#` and then hit the tab after the period.
-# grouped_df.<TAB>
+#grouped_df.
 ```
 
-This will display the following output:
+This is a comprehensive list of all built-in methods available to grouped objects. Note that some are aggregation methods, while others, such as `grouped.fillna()`, allow us to fill missing values to individual groups independently.  
 
-```In [26]: grouped_df.<TAB>
-gb.agg        gb.boxplot    gb.cummin     gb.describe   gb.filter     gb.get_group  gb.height     gb.last       gb.median     gb.ngroups    gb.plot       gb.rank       gb.std        gb.transform
-gb.aggregate  gb.count      gb.cumprod    gb.dtype      gb.first      gb.groups     gb.hist       gb.max        gb.min        gb.nth        gb.prod       gb.resample   gb.sum        gb.var
-gb.apply      gb.cummax     gb.cumsum     gb.fillna     gb.gender     gb.head       gb.indices    gb.mean       gb.name       gb.ohlc       gb.quantile   gb.size       gb.tail       gb.weight```
+### Multiple Aggregations
+
+The `.groupby()` method in pandas can also run multiple different aggregations by utilizing `.agg()` instead of a single aggregation. A python dictionary can be passed into `.agg()` where the keys are the column names you want to aggregate and the values are the string representation of the exact aggregation method you want. 
+
+
+```python
+df.groupby('Sex').agg({'PassengerId':'count',
+                       'Survived':'sum',
+                       'Age':'mean'})
 ```
 
-This is a comprehensive list of all built-in methods available to grouped objects. Note that some are aggregation methods, while others, such as `gb.fillna()`, allow us to fill missing values to individual groups independently.  
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>PassengerId</th>
+      <th>Survived</th>
+      <th>Age</th>
+    </tr>
+    <tr>
+      <th>Sex</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>female</th>
+      <td>443</td>
+      <td>284.0</td>
+      <td>28.922912</td>
+    </tr>
+    <tr>
+      <th>male</th>
+      <td>766</td>
+      <td>191.0</td>
+      <td>30.199752</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+In the cell above we returned three different aggregations on three seperate columns. We counted up the number of individuals using `'PassengerId':'count'`. We looked at the number of people who survived via ``'Survived':'sum'`` and finally we also returned the mean age via ``'Age':'mean'``, all grouped by `Sex`.
 
 ## Multiple groups
 
@@ -418,8 +474,11 @@ The above example slices by column, but you can also slice by index. Take a look
 
 ```python
 grouped = df.groupby(['Sex', 'Pclass'])['Survived'].mean()
-print(grouped['female'])
+grouped['female']
 ```
+
+
+
 
     Pclass
     1    0.811966
@@ -430,11 +489,30 @@ print(grouped['female'])
 
 
 
+
 ```python
-print(grouped['female'][1])
+# Using string index label
+grouped['female']['1']
 ```
 
-    0.7226890756302521
+
+
+
+    0.811965811965812
+
+
+
+
+```python
+# Same result as python 0 index
+grouped['female'][0]
+```
+
+
+
+
+    0.811965811965812
+
 
 
 Note that you need to provide only the value `female` as the index, and are returned all the groups where the passenger is female, regardless of the `Pclass` value. The second example shows the results for female passengers with a 1st-class ticket.
